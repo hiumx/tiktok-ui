@@ -13,6 +13,11 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.logo {
+    display: flex;
+}
+
 .search,
 .search-result {
     width: 361px;
@@ -77,8 +82,6 @@
 .search-btn {
     width: 52px;
     height: 100%;
-    outline: none;
-    border: none;
     border-top-right-radius: 92px;
     border-bottom-right-radius: 92px;
     font-size: 1.8rem;
@@ -91,4 +94,15 @@
     &:active {
         background-color: rgba(22, 24, 35, 0.06);
     }
+}
+
+.custom-login {
+    color: rgba(22, 24, 35, 0.75);
+}
+
+.more-btn {
+    font-size: 1.8rem;
+    margin-left: 24px;
+    background-color: transparent;
+    padding: 4px 8px;
 }
