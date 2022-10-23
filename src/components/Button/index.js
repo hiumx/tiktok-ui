@@ -27,7 +27,7 @@ function Button({
         ...passProps,
     };
 
-    // remove event listener when btn is disable
+    // Remove event listener when btn is disabled
     if (disable) {
         Object.keys(props).forEach((key) => {
             if (key.startsWith('on') && typeof props[key] === 'function') {
@@ -46,7 +46,7 @@ function Button({
 
     const classes = cx('wrapper', {
         [className]: className,
-        primary: primary,
+        primary,
         outline,
         text,
         disable,
