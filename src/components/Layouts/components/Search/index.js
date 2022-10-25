@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 
+import * as searchServices from '~/apiServices/searchServices';
 import { Wrapper as PropperWrapper } from '~/components/Propper';
 import AccountItem from '~/components/AccountItem';
 import { SearchIcon } from '~/components/Icons';
 import styles from './Search.module.scss';
+import { useDebounce } from '~/hooks';
 
 const cx = classNames.bind(styles);
 
@@ -17,25 +19,25 @@ function Search() {
     const [showResult, setShowresult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    const debounced = useDebounce(searchValue, 500);
+
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounced.trim()) {
             setSearchResult([]);
             return;
         }
-        setLoading(true);
+        const fetchApi = async () => {
+            setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
-    }, [searchValue]);
+            const result = await searchServices.search(debounced);
+            setSearchResult(result);
+
+            setLoading(false);
+        };
+        fetchApi();
+    }, [debounced]);
 
     const handleClearSearch = () => {
         setSearchValue('');
@@ -45,6 +47,12 @@ function Search() {
 
     const handleHideResult = () => {
         setShowresult(false);
+    };
+
+    const handleNoSpaces = (e) => {
+        if (!searchValue.trim() && e.which === 32) {
+            handleClearSearch();
+        }
     };
 
     return (
@@ -71,6 +79,7 @@ function Search() {
                     spellCheck={false}
                     onChange={(e) => setSearchValue(e.target.value)}
                     onFocus={() => setShowresult(true)}
+                    onKeyUp={(e) => handleNoSpaces(e)}
                 />
                 {!!searchValue && !loading && (
                     <button className={cx('clear')} onClick={handleClearSearch}>
