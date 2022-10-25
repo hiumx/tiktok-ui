@@ -49,10 +49,9 @@ function Search() {
         setShowresult(false);
     };
 
-    const handleNoSpaces = (e) => {
-        if (!searchValue.trim() && e.which === 32) {
-            handleClearSearch();
-        }
+    const handleOnchange = (e) => {
+        const searchValue = e.target.value;
+        setSearchValue(searchValue.startsWith(' ') ? searchValue.trim() : searchValue);
     };
 
     return (
@@ -77,9 +76,8 @@ function Search() {
                     value={searchValue}
                     placeholder="Search accounts and videos"
                     spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleOnchange}
                     onFocus={() => setShowresult(true)}
-                    onKeyUp={(e) => handleNoSpaces(e)}
                 />
                 {!!searchValue && !loading && (
                     <button className={cx('clear')} onClick={handleClearSearch}>
@@ -87,7 +85,7 @@ function Search() {
                     </button>
                 )}
                 {loading && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon />
                 </button>
             </div>
