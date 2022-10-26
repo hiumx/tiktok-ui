@@ -49,7 +49,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange }) {
                                 }}
                             />
                         )}
-                        {renderItem()}
+                        <div className={cx('menu-body')}>{renderItem()}</div>
                     </PropperWrapper>
                 </div>
             )}

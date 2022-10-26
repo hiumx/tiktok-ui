@@ -10,6 +10,14 @@
     padding-bottom: 8px;
 }
 
+.menu-body {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+// Menu Item
+
 .menu-item {
     justify-content: flex-start;
     font-weight: 600;
@@ -34,6 +42,7 @@
     height: 50px;
     margin: -8px;
     margin-left: 0;
+    flex-shrink: 0;
 }
 
 .back-btn {
