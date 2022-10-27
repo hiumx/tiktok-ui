@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
@@ -9,14 +10,14 @@ import { useState } from 'react';
 const cx = classNames.bind(styles);
 
 function AccountItem({ data }) {
-    const [falllBack, setFallback] = useState('');
+    const [fallBack, setFallback] = useState('');
 
     const handleError = () => {
         setFallback(images.personDefault);
     };
     return (
         <Link to={`/@${data.nickname}`} className={cx('wrapper')}>
-            <img className={cx('avatar')} src={falllBack || data.avatar} alt={data.full_name} onError={handleError} />
+            <img className={cx('avatar')} src={fallBack || data.avatar} alt={data.full_name} onError={handleError} />
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
                     {data.full_name}
@@ -28,4 +29,7 @@ function AccountItem({ data }) {
     );
 }
 
+AccountItem.propTypes = {
+    data: PropTypes.object.isRequired,
+};
 export default AccountItem;

@@ -33,7 +33,7 @@ const MENU_ITEMS = [
         icon: <FontAwesomeIcon icon={faLanguage} />,
         title: 'English',
         children: {
-            title: 'Lannguage',
+            title: 'Language',
             data: [
                 {
                     type: 'language',
@@ -43,7 +43,7 @@ const MENU_ITEMS = [
                 {
                     type: 'language',
                     code: 'vi',
-                    title: 'Tieng Viet',
+                    title: 'Tiếng Việt',
                 },
             ],
         },
@@ -116,7 +116,7 @@ function Header() {
             <div className={cx('inner')}>
                 <div className={cx('logo')}>
                     <Link to={routesConfig.home} className={cx('logo-link')}>
-                        <img src={images.logo} alt="Tiktok" />
+                        <img src={images.logo} alt="TikTok" />
                     </Link>
                 </div>
 
