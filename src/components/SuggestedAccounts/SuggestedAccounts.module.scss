@@ -1,0 +1,67 @@
+.wrapper {
+    padding: 16px 0;
+    border-top: 1px solid #f1f1f2;
+}
+
+.label {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 8px 8px;
+    color: #161823bf;
+}
+
+.account-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color ease-in-out 200ms;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
+
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
+    }
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.item-info {
+    flex: 1;
+    margin-left: 12px;
+}
+
+.nick-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #161823;
+}
+
+.check {
+    font-size: 1.4rem;
+    color: #20d5ec;
+    margin-left: 4px;
+}
+
+.name {
+    font-size: 1.2rem;
+    color: #8c8e93;
+}
+
+.more-btn {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fe2c55;
+    padding: 0 8px;
+    margin-top: 8px;
+    cursor: pointer;
+}
